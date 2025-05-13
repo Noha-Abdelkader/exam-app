@@ -356,7 +356,7 @@ const QuestionsForm = ({
                 return false;
 
               // case finish quiz
-              if (step == questions.length) return false;
+              if (step == questions.length-1) return false;
               else return true;
             })()}
           >
