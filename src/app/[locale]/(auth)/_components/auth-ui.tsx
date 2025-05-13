@@ -1,19 +1,28 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import mountains from "/assets/images/bro.png";
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import AOS from "aos";
+import "aos/dist/aos.css"; // You can also use <link> for styles
+
+// import {
+//   DropdownMenu,
+//   DropdownMenuContent,
+//   DropdownMenuItem,
+//   DropdownMenuLabel,
+//   DropdownMenuTrigger,
+// } from "@/components/ui/dropdown-menu";
 
 import { Button } from "@/components/ui/button";
 
-import { FaGoogle, FaFacebook, FaTwitter, FaApple } from "react-icons/fa";
+import {
+  FaGoogle,
+  FaFacebook,
+  FaTwitter,
+  FaApple,
+  FaSchool,
+} from "react-icons/fa";
 import { Link } from "@/i18n/navigation";
 
 export default function AuthUI({
@@ -32,33 +41,55 @@ export default function AuthUI({
     { icon: <FaApple />, href: "www.apple.com" },
   ];
 
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
     <>
       {/* left */}
-      <div className="col-span-1">
-        <div className="min-h-screen h-full bg-main-50 hidden sm:flex items-center justify-center text-black rounded-tr-[40px] rounded-br-[40px]  shadow_dark ">
-          <div className="  max-w-sm m-auto">
-            <h1 className=" text-4xl lg:text-5xl font-semibold">welcome to</h1>
-            <h1 className="text-main-700   text-4xl lg:text-5xl font-semibold">
-              Elevate
-            </h1>
-            <p className="my-4 text-sm">
-              Quidem autem voluptatibus qui quaerat aspernatur architecto natus
-            </p>
-            <Image
-              src={mountains}
-              width={300}
-              height={0}
-              alt="cover"
-              priority={true}
-            />
+      <div className="bg-white h-full">
+        <div className="col-span-1 shadow_dark bg-main-50 h-full rounded-tr-[40px] rounded-br-[40px]">
+          <div className="min-h-screen h-full  hidden sm:flex items-center justify-center text-black    ">
+            <div className="  max-w-sm m-auto ">
+              <h1
+                data-aos="fade-right"
+                className=" text-4xl lg:text-5xl font-semibold first-letter:text-main-700 first-letter:text-6xl"
+              >
+                welcome to
+              </h1>
+              <h1
+                data-aos="fade-left"
+                className="text-main-700   text-4xl lg:text-5xl font-semibold ms-20"
+              >
+                Exam App
+              </h1>
+
+              <div data-aos="fade-up" className="my-10">
+                <p className="  text-2xl  font-semibold flex items-center gap-2">
+                  <span className=" first-letter:text-white first-letter:bg-main-700 first-letter:p-0.5">
+                    School free
+                  </span>
+                  <FaSchool className="text-main-700 text-3xl" />
+                </p>
+                <p className="text-gray-500 ms-10">
+                  Online Courses , online Exam !!
+                </p>
+              </div>
+              <Image
+                src={mountains}
+                width={300}
+                height={0}
+                alt="cover"
+                priority={true}
+              />
+            </div>
           </div>
         </div>
       </div>
       {/* right */}
       <div className="col-span-1  max-w-sm mx-auto w-full py-20 px-10 md:px-0">
         <header className="text-end flex items-center justify-center gap-7 text-xs">
-          <ul>
+          {/* <ul>
             <DropdownMenu>
               <DropdownMenuTrigger>
                 <DropdownMenuLabel>English</DropdownMenuLabel>
@@ -69,7 +100,7 @@ export default function AuthUI({
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          </ul>
+          </ul> */}
           <Link href={"/signin"} className="text-main-100 font-semibold">
             Sign in
           </Link>
@@ -102,7 +133,9 @@ export default function AuthUI({
                       : "text-black"
                   }`}
                 >
-                  {social.icon as React.ReactNode}
+                  <Link href={social.href}>
+                    {social.icon as React.ReactNode}
+                  </Link>
                 </li>
               );
             })}

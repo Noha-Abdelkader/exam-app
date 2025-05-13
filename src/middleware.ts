@@ -56,7 +56,7 @@ export default async function middleware(req: NextRequest) {
   const locale = req.nextUrl.locale || routing.defaultLocale;
   const redirectURL = new URL(`/${locale}/dashboard`, req.nextUrl.origin);
 
-  if (req.nextUrl.pathname == "/" || req.nextUrl.pathname == `/${locale}`) {
+  if (req.nextUrl.pathname == "/" || req.nextUrl.pathname == `/${locale}` ||  req.nextUrl.pathname == `/dashboard` ||  req.nextUrl.pathname == "") {
     return NextResponse.redirect(redirectURL);
   }
 

@@ -73,7 +73,10 @@ const QuizzesList = () => {
       <ul className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
         {previewQuizess.map((quiz: Quiz) => {
           return (
-            <li key={quiz?._id} className="col-span-1 relative  w-full">
+            <li
+              key={quiz?._id}
+              className="col-span-1 relative  w-full hover:[&>a>div]:inset-0"
+            >
               <Link href={`/dashboard/quizzes/${quiz._id}`}>
                 <Image
                   src={quiz.icon}
@@ -82,7 +85,7 @@ const QuizzesList = () => {
                   alt={quiz?.name}
                   className="w-full"
                 />
-                <div className="bg-main-100/60 rounded-md p-2 absolute inset-x-3 bottom-3">
+                <div className="bg-main-100/60 rounded-md p-2 absolute inset-x-3 bottom-3  transition-all duration-300 ease-in-out flex items-center justify-center">
                   <h2 className="text-white">{quiz.name}</h2>
                 </div>
               </Link>

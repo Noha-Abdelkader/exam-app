@@ -44,8 +44,9 @@ export default async  function LocaleLayout({
     <html
       lang={locale}
       dir={checkDirction(locale)}
-      className={`${cn(inter.variable)}  bg-[#FBF9F9] `}
+      className={`${cn(inter.variable)}`}
     >
+      {/* bg-[#FBF9F9] */}
       <body>
         <Providers>
           {children}
